@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "planiaBusiness",
+    "slug": "planiaBusiness",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.anonymous.planiaBusiness"
+    },
+    "web": {},
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
