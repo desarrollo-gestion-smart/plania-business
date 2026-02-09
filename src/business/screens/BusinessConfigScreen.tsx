@@ -65,7 +65,7 @@ const BusinessConfigScreen = () => {
   }, [navigation]);
   
   // Punto común de API (ajusta si usas localhost)
-  const API_BASE = 'http://192.168.0.161:3000' ;
+  const API_BASE = 'http://192.168.0.128:3000' ;
   
   // Subir imagen y devolver URL pública
   const uploadImage = async (uri: string, id?: number): Promise<string> => {

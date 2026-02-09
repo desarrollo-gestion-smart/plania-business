@@ -18,7 +18,7 @@ import SlidingFooter from '../../ui/SlidingFooter';
 import { AuthStackParamList } from '../../navigation/AuthNavigator';
 import { useAuthContext } from '../../auth/context/AuthContext';
 
-const API_BASE = 'http://192.168.0.161:3000';
+const API_BASE = 'http://192.168.0.128:3000';
 
 type BHRoute = RouteProp<AuthStackParamList, 'BusinessHome'>;
 

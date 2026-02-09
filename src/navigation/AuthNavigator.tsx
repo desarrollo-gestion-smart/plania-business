@@ -52,8 +52,13 @@ const AuthNavigator = () => {
         freezeOnBlur: false,
       }}
     >
-      {/* Reducimos a una sola pantalla para aislar el crash */}
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+      <Stack.Screen name="VerificationCode" component={VerificationCodeScreen} />
+      <Stack.Screen name="BusinessConfig" component={BusinessConfigScreen} />
+      <Stack.Screen name="StaffSetup" component={StaffSetupScreen} />
+      <Stack.Screen name="BusinessHome" component={BusinessHomeScreen} />
     </Stack.Navigator>
   );
 };

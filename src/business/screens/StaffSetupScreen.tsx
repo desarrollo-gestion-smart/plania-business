@@ -12,7 +12,7 @@ type StaffSetupRouteProp = RouteProp<AuthStackParamList, 'StaffSetup'>;
 
 type StaffSetupNavigationProp = StackNavigationProp<AuthStackParamList>;
 
-const API_BASE = 'http://192.168.0.161:3000';
+const API_BASE = 'http://192.168.0.128:3000';
 
 const StaffSetupScreen: React.FC = () => {
   const route = useRoute<StaffSetupRouteProp>();

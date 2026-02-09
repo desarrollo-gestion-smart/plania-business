@@ -7,25 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
-
-
-const api = axios.create({
-  baseURL: 'http://192.168.0.161:3000/api', 
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  },
-  withCredentials: true,
-});
-
-
-api.interceptors.response.use(
-  response => response,
-  error => {
-    console.error('Error en la peticion:', error);
-    return Promise.reject(error);
-  }
-);
+import { api, API_URL } from '../../utils/api';
 
 interface LoginResponse {
   token: string;
@@ -43,17 +25,6 @@ const LoginScreen: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Modo diagnóstico mínimo para aislar crash en Login
-  const DEBUG_LOGIN_MINIMAL = true;
-  if (DEBUG_LOGIN_MINIMAL) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 18, color: '#111' }}>Login: modo diagnóstico mínimo</Text>
-        <Text style={{ marginTop: 8, color: '#555' }}>Si esto no crashea, el fallo está en el UI del Login.</Text>
-      </View>
-    );
-  }
-
   const validateForm = (): boolean => {
     // Validar solo el formato del teléfono (solo números y al menos 10 dígitos)
     const phoneRegex = /^\d{10,}$/;
@@ -61,8 +32,10 @@ const LoginScreen: React.FC = () => {
       Alert.alert('Error', 'El telefono debe contener al menos 10 digitos');
       return false;
     }
-
-    // No validamos la contraseña aquí, el backend se encargará
+    if (!password || !password.trim()) {
+      Alert.alert('Error', 'Ingresa tu contrasena');
+      return false;
+    }
     return true;
   };
 
@@ -76,10 +49,10 @@ const LoginScreen: React.FC = () => {
   
     setIsLoading(true);
   
-    // Datos que se enviarán al servidor
+    // Datos que se enviarán al servidor: numero (número) + password (string)
     const loginData = {
-      numero: phone.trim(),
-      password: password
+      numero: parseInt(phone.trim(), 10),
+      password: password.trim()
     };
   
     console.log('=== DATOS DE INICIO DE SESIÓN ===');
@@ -94,7 +67,7 @@ const LoginScreen: React.FC = () => {
       numero: loginData.numero,
       password: '••••••••' // No mostramos la contraseña por seguridad
     });
-    console.log('URL completa:', 'http://192.168.0.161:3000/api/login-business');
+    console.log('URL completa:', `${API_URL}/login-business`);
     console.log('==============================');
   
     try {
@@ -405,8 +378,8 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 'auto',
-    paddingTop: 20,
+    marginTop: 16,
+    paddingTop: 12,
   },
   footerText: {
     color: '#666',

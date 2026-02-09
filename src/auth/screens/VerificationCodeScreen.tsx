@@ -64,7 +64,7 @@ const VerificationCodeScreen: React.FC = () => {
     try {
       // Crear instancia de axios para la verificación
       const api = axios.create({
-        baseURL: 'http://192.168.0.161:3000/api',
+        baseURL: 'http://192.168.0.128:3000/api',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -136,7 +136,7 @@ const VerificationCodeScreen: React.FC = () => {
       setIsLoading(true);
       
       const api = axios.create({
-        baseURL: 'http://192.168.0.161:3000/api',
+        baseURL: 'http://192.168.0.128:3000/api',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
